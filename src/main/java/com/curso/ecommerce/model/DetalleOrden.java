@@ -2,9 +2,10 @@ package com.curso.ecommerce.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
-@Table(name = "detalle")
+@Table(name = "detalles")
 public class DetalleOrden implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,6 +14,28 @@ public class DetalleOrden implements Serializable {
     private double cantidad;
     private double precio;
     private double total;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Orden orden;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Producto producto;
+
+    public Orden getOrden() {
+        return orden;
+    }
+
+    public void setOrden(Orden orden) {
+        this.orden = orden;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
 
     public DetalleOrden() {
     }

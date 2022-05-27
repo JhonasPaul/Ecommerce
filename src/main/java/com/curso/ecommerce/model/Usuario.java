@@ -2,6 +2,7 @@ package com.curso.ecommerce.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
@@ -17,7 +18,29 @@ public class Usuario implements Serializable {
     private String tipo;
     private String password;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    private List<Producto> productos;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    private List<Orden> ordenes;
+
     public Usuario() {
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+
+    public List<Orden> getOrdenes() {
+        return ordenes;
+    }
+
+    public void setOrdenes(List<Orden> ordenes) {
+        this.ordenes = ordenes;
     }
 
     public Usuario(Integer id, String nombre, String username, String mail, String direccion, String telefono, String tipo, String password) {

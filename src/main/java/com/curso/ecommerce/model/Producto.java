@@ -15,7 +15,18 @@ public class Producto implements Serializable {
     private double precio;
     private int cantidad;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Usuario usuario;
+
     public Producto() {
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Producto(Integer id, String nombre, String descripcion, String imagen, double precio, int cantidad) {

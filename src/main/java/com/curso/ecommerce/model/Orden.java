@@ -3,6 +3,7 @@ package com.curso.ecommerce.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "ordenes")
@@ -15,7 +16,29 @@ public class Orden implements Serializable {
     private Date fechaRecibida;
     private double total;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Usuario usuario;
+
+    @OneToMany(mappedBy = "orden")
+    private List<DetalleOrden> detalle;
+
     public Orden() {
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public List<DetalleOrden> getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(List<DetalleOrden> detalle) {
+        this.detalle = detalle;
     }
 
     public Orden(Integer id, String numero, Date fechaCreacion, Date fechaRecibida, double total) {
