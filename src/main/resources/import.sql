@@ -1,0 +1,1 @@
+insert into usuarios(id, tipo, username)values (1, 'admin', 'elargo')
